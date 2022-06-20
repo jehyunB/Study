@@ -10,10 +10,10 @@ x = np.array([[1,2,3,4,5,6,7,8,9,10],
 
 y = np.array([11,12,13,14,15,16,17,18,19,20])
 print(x.shape) 
-print(y.shape) # (10,3)
+print(y.shape) 
 x = x.T
 print(x)
-print(x.shape)
+print(x.shape) # (10,3)
 #2. 모델구성
 model = Sequential()
 model.add(Dense(5, input_dim=3))
