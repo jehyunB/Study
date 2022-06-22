@@ -1,0 +1,53 @@
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+import numpy as np
+from sklearn.model_selection import train_test_split
+ 
+ #1. 데이터
+x = np.array([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20])
+y = np.array([1,2,4,3,5,7,9,3,8,12,13,8,14,15,8,6,17,19,18,20])
+
+x_train, x_test, y_train, y_test = train_test_split(x, y,train_size=0.7, shuffle=True, random_state=20)
+
+#2. 모델구성
+model = Sequential()
+model.add(Dense(20, input_dim=1))
+model.add(Dense(18))
+model.add(Dense(16))
+model.add(Dense(14))
+model.add(Dense(12))
+model.add(Dense(11))
+model.add(Dense(8))
+model.add(Dense(6))
+model.add(Dense(1))
+
+#3. 컴파일 ,훈련
+model.compile(loss='mse',optimizer='adam')
+model.fit(x_train, y_train, epochs=500, batch_size=1)
+
+#4. 평가, 에측
+loss= model.evaluate(x_test, y_test)
+print('loss :',loss)
+
+y_predict= model.predict(x)
+
+from sklearn.metrics import r2_score
+r2 =r2_score(y, y_predict)
+print('r2스코어:', r2)
+
+# loss : 7.989648342132568
+# r2스코어: 0.7338001200207105
+
+
+
+
+
+
+
+
+
+# import matplotlib.pyplot as pit
+
+#  pit.scatter(x,y)
+# pit.plot(x,y_predict, color='red')
+# pit.show()
